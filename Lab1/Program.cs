@@ -42,32 +42,52 @@ namespace Lab1
                     intKeyValuePairs.Add(new KeyValuePair<int, int>(i, i + 42));
                 }
 
+
                 keyValueMap.Clear();
-                // Ordered
+            // Ordered
+                //Add
                 totalOrderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
-                //totalHeightOrdered += keyValueMap.Height;
 
-                //totalOrderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                //Height
+                totalHeightOrdered += keyValueMap.Height;
 
-                // Unordered
+                //Search
+                totalOrderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+
+                //Remove
+                totalOrderedRemove += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+
+            // Unordered
                 intKeyValuePairs.Shuffle();
                 keyValueMap.Clear();
+
+                //Add
                 totalUnorderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
-                //totalHeightUnordered += keyValueMap.Height;
+
+                //Height
+                totalHeightUnordered += keyValueMap.Height;
+
+                //Search
+                totalUnorderedGet += QueryKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+
+                //Remove
+                totalUnorderedRemove += RemoveKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
 
             }
 
             Console.WriteLine(keyValueMap.GetType());
 
             Console.WriteLine("Ordered");
-            Console.WriteLine(totalOrderedCreate / ITERATIONS);
-            Console.WriteLine(totalHeightOrdered/ ITERATIONS);
+            Console.WriteLine("Add:" + totalOrderedCreate / ITERATIONS);
+            Console.WriteLine("Height:" + totalHeightOrdered/ ITERATIONS);
+            Console.WriteLine("Search:" + totalOrderedGet / ITERATIONS);
+            Console.WriteLine("Remove:" + totalOrderedRemove / ITERATIONS);
 
             Console.WriteLine("Unordered");
-            Console.WriteLine(totalUnorderedCreate / ITERATIONS);
-            Console.WriteLine(totalHeightUnordered / ITERATIONS);
-
-
+            Console.WriteLine("Add:" + totalUnorderedCreate / ITERATIONS);
+            Console.WriteLine("Height:" + totalHeightUnordered / ITERATIONS);
+            Console.WriteLine("Search:" + totalUnorderedGet / ITERATIONS);
+            Console.WriteLine("Remove:" + totalUnorderedRemove / ITERATIONS);
 
         }
 
