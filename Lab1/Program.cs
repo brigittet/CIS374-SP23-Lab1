@@ -31,7 +31,7 @@ namespace Lab1
             var avlKeyValueMap = new AVLTreeKeyValueMap<int, int>();
             var redblackKeyValueMap = new RedBlackTreeKeyValueMap<int, int>();
 
-            keyValueMap = bstKeyValueMap;
+            keyValueMap = dictionaryKeyValueMap;
 
             for (int c = 0; c < ITERATIONS; c++)
             {
@@ -52,7 +52,7 @@ namespace Lab1
                 // Unordered
                 intKeyValuePairs.Shuffle();
                 keyValueMap.Clear();
-                //totalUnorderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
+                totalUnorderedCreate += CreateKeyValueMap<int, int>(keyValueMap, intKeyValuePairs);
                 //totalHeightUnordered += keyValueMap.Height;
 
             }
@@ -100,7 +100,19 @@ namespace Lab1
                 IKeyValueMap<TKey, TValue> keyValueMap,
                 List<KeyValuePair<TKey, TValue>> keyValuePairs)
         {
-            return 0.0;
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+
+            foreach (var kvp in keyValuePairs)
+            {
+                keyValueMap.Get(kvp.Key);
+            }
+
+            stopwatch.Stop();
+
+            Console.WriteLine(stopwatch.Elapsed.TotalSeconds);
+            return stopwatch.Elapsed.TotalSeconds;
         }
 
         //TODO
@@ -108,7 +120,19 @@ namespace Lab1
                 IKeyValueMap<TKey, TValue> keyValueMap,
                 List<KeyValuePair<TKey, TValue>> keyValuePairs)
         {
-            return 0.0;
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+
+            foreach (var kvp in keyValuePairs)
+            {
+                keyValueMap.Remove(kvp.Key);
+            }
+
+            stopwatch.Stop();
+
+            Console.WriteLine(stopwatch.Elapsed.TotalSeconds);
+            return stopwatch.Elapsed.TotalSeconds;
         }
     }
 }
